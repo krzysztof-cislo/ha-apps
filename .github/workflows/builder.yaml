@@ -10,6 +10,8 @@ on:
   push:
     branches:
       - main
+  # Ręczne uruchomienie (Actions → Builder → Run workflow) przebudowuje wszystkie aplikacje.
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -41,8 +43,10 @@ jobs:
         run: |
           changed_apps=()
 
-          # If the workflow file itself changed, rebuild all apps
-          if [[ "${CHANGED_FILES}" =~ \.github/workflows/(builder|build-app)\.yaml ]]; then
+          # Manual run, or the workflow file itself changed: rebuild all apps
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            changed_apps=(${APPS})
+          elif [[ "${CHANGED_FILES}" =~ \.github/workflows/(builder|build-app)\.yaml ]]; then
             changed_apps=(${APPS})
           else
             for app in ${APPS}; do
@@ -77,5 +81,5 @@ jobs:
     uses: ./.github/workflows/build-app.yaml
     with:
       app: ${{ matrix.app }}
-      publish: ${{ github.event_name == 'push' }}
+      publish: ${{ github.event_name != 'pull_request' }}
     secrets: inherit
