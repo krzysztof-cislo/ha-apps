@@ -1,0 +1,42 @@
+configuration:
+  imap_host:
+    name: IMAP server
+    description: e.g. imap.gmail.com, outlook.office365.com
+  imap_port:
+    name: IMAP port (SSL)
+  imap_user:
+    name: Username (e-mail address)
+  imap_password:
+    name: Password
+    description: For Gmail use an app password.
+  imap_folder:
+    name: Folder
+  netflix_email:
+    name: Netflix e-mail
+    description: Optional. Used only when the link opens the Netflix login page.
+  netflix_password:
+    name: Netflix password
+    description: Optional, together with the Netflix e-mail.
+  sender_filter:
+    name: Sender filter
+    description: Substring of the sender address (IMAP FROM).
+  link_pattern:
+    name: Link pattern
+    description: Only links containing one of these comma-separated fragments are opened.
+  poll_interval:
+    name: Poll interval (s)
+    description: Only used when the server does not support IMAP IDLE.
+  max_age_minutes:
+    name: Max e-mail age (min)
+    description: Older e-mails are skipped – Netflix links expire after ~15 minutes.
+  after_confirm:
+    name: After confirming
+    description: trash = move the e-mail to Trash, read = mark as read, keep = do nothing.
+  notify_service:
+    name: Notify service
+    description: Optional, e.g. notify.mobile_app_phone.
+  dry_run:
+    name: Dry run
+    description: Open the link and look for the button, but do not click it.
+  debug:
+    name: Debug logging

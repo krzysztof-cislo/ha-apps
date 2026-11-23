@@ -1,0 +1,50 @@
+name: Netflix Household Auto-Confirm
+version: "1.2.1"
+slug: netflix_household
+url: https://github.com/krzysztof-cislo/ha-apps/tree/main/netflix_household
+image: ghcr.io/krzysztof-cislo/ha-app-netflix-household
+description: >-
+  Czyta skrzynkę IMAP i automatycznie potwierdza maile Netflix
+  „Zaktualizuj gospodarstwo domowe”.
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: application
+boot: auto
+homeassistant_api: true
+map:
+  - type: share
+    read_only: false
+options:
+  imap_host: imap.gmail.com
+  imap_port: 993
+  imap_user: ""
+  imap_password: ""
+  imap_folder: INBOX
+  netflix_email: ""
+  netflix_password: ""
+  sender_filter: netflix.com
+  link_pattern: update-primary-location,set-primary-location
+  poll_interval: 30
+  max_age_minutes: 15
+  after_confirm: trash
+  notify_service: ""
+  dry_run: false
+  debug: false
+schema:
+  imap_host: str
+  imap_port: port
+  imap_user: str
+  imap_password: password
+  imap_folder: str
+  netflix_email: str?
+  netflix_password: password?
+  sender_filter: str
+  link_pattern: str
+  poll_interval: int(10,3600)
+  max_age_minutes: int(1,1440)
+  after_confirm: list(trash|read|keep)
+  notify_service: str?
+  dry_run: bool
+  debug: bool

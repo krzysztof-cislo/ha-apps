@@ -1,0 +1,43 @@
+configuration:
+  imap_host:
+    name: Serwer IMAP
+    description: Np. imap.gmail.com, outlook.office365.com, imap.wp.pl
+  imap_port:
+    name: Port IMAP (SSL)
+  imap_user:
+    name: Login (adres e-mail)
+  imap_password:
+    name: Hasło
+    description: Dla Gmaila – hasło aplikacji (Konto Google → Bezpieczeństwo → Hasła do aplikacji).
+  imap_folder:
+    name: Folder
+    description: Folder, do którego trafiają maile od Netflixa (domyślnie INBOX).
+  netflix_email:
+    name: E-mail do Netflixa
+    description: Opcjonalnie. Używany tylko, gdy po otwarciu linku Netflix pokaże stronę logowania.
+  netflix_password:
+    name: Hasło do Netflixa
+    description: Opcjonalnie, razem z e-mailem do Netflixa.
+  sender_filter:
+    name: Filtr nadawcy
+    description: Fragment adresu nadawcy (IMAP FROM).
+  link_pattern:
+    name: Fragment linku
+    description: Link w mailu musi zawierać jeden z tych fragmentów (oddzielone przecinkami).
+  poll_interval:
+    name: Częstotliwość sprawdzania (s)
+    description: Używana tylko, gdy serwer nie obsługuje IMAP IDLE (Gmail obsługuje – nowe maile przychodzą od razu).
+  max_age_minutes:
+    name: Maksymalny wiek maila (min)
+    description: Starsze maile są pomijane – link Netflixa wygasa po ok. 15 minutach.
+  after_confirm:
+    name: Po potwierdzeniu
+    description: trash = przenieś mail do kosza, read = oznacz jako przeczytany, keep = nic nie rób.
+  notify_service:
+    name: Usługa powiadomień
+    description: Opcjonalnie, np. notify.mobile_app_telefon. Pusta = tylko zdarzenie netflix_household.
+  dry_run:
+    name: Tryb testowy
+    description: Otwiera link i szuka przycisku, ale go nie klika.
+  debug:
+    name: Szczegółowe logi
